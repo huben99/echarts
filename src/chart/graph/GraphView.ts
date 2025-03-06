@@ -115,6 +115,11 @@ class GraphView extends ChartView {
 
         this._updateNodeAndLinkScale();
 
+        /** 在原始数据里写入layout的x,y坐标 */
+        data.eachItemGraphicEl(function (el: Symbol, idx) {
+            (data.getRawDataItem(idx) as any).el = el;
+        });
+
         this._updateController(seriesModel, ecModel, api);
 
         clearTimeout(this._layoutTimeout);
